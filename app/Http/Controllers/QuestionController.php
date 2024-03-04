@@ -32,7 +32,7 @@ class QuestionController extends Controller
     {
         Question::query()->create(
             request()->validate([
-                'question' => 'required'
+                'question' => 'required|min:10'
             ])
         );
         return to_route('dashboard');

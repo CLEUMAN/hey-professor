@@ -12,6 +12,7 @@ use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
+
     /**
      * Show the confirm password view.
      */
@@ -25,9 +26,11 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $password = $request['password'];
+
         if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,
-            'password' => $request->password,
+            'password' => $password,
         ])) {
             throw ValidationException::withMessages([
                 'password' => __('auth.password'),

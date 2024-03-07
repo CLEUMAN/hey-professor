@@ -1,17 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <x-layout.header>
             {{ __('Dashboard') }}
-        </h2>
+        </x-layout.header>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-layout.container>
+
+            <x-question.form>
+
+                <x-form.textarea label="Qual sua pergunta..." name="question"/>
+
+                <x-btn.reset>Cancel</x-btn.reset>
+                <x-btn.primary>Save</x-btn.primary>
+
+            </x-question.form>
+
+    </x-layout.container>>
 </x-app-layout>

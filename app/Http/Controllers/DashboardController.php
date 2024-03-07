@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+
 
 class DashboardController extends Controller
 {

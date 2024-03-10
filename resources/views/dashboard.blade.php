@@ -7,7 +7,7 @@
 
     <x-layout.container>
 
-            <x-question.form>
+            <x-question.form action="{{route('question.store')}}">
 
                 <x-form.textarea label="Qual sua pergunta..." name="question"/>
 
@@ -18,11 +18,14 @@
 
         <hr class="border-gray-700 border-dashed my-4">
 
-        <div class="dark:text-gray-400 uppercase font-bold">## List of questions</div>
+        <div class="border border-white rounded-xl bg-white shadow shadow-white shadow-2xl  p-4">
+        <p class="dark:text-gray-400 uppercase font-bold">## List of questions</p>
+            @foreach($questions as $question)
+                <x-question.card :question="$question"/>
+            @endforeach
+        </div>
 
-        @foreach($questions as $question)
-            <x-question.card :question="$question"/>
-        @endforeach
+
 
     </x-layout.container>>
 </x-app-layout>

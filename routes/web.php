@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Question\LikeController;
+use App\Http\Controllers\Question\UnlikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verif
 Route::post('/question/store',[QuestionController::class, 'store'])->name('question.store');
 Route::post('/question/like/{question}', LikeController::class)->name('question.like');
 
+Route::post('/question/unlike/{question}', UnlikeController::class)->name('question.unlike');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

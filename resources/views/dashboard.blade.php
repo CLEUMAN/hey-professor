@@ -18,8 +18,8 @@
 
         <hr class="border-gray-700 border-dashed my-4">
 
-        <div class="border dark:border-gray-500 dark:text-white dark:bg-gray-500  border-white rounded-xl bg-white
-        shadow dark:shadow-gray-500 shadow-white shadow-2xl  p-4">
+        <div class="border dark:border-gray-700 dark:text-white dark:bg-gray-700  border-white rounded-xl bg-white
+        shadow dark:shadow-gray-500 shadow-white  p-4">
         <p class="dark:text-white uppercase font-bold">## List of questions</p>
             @foreach($questions as $question)
                 <x-question.card :question="$question"/>

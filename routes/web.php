@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Question\LikeController;
+use App\Http\Controllers\Question\UnlikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +21,19 @@ use App\Http\Controllers\QuestionController;
 Route::get('/', function () {
 
     if(app()->isLocal()){
-        auth()->loginUsingId(1);
+        $user = \App\Models\User::select()->first();
+        auth()->loginUsingId($user->id);
         return to_route('dashboard');
     }
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/question/store',[QuestionController::class, 'store'])->name('question.store');
+Route::post('/question/like/{question}', LikeController::class)->name('question.like');
+
+Route::post('/question/unlike/{question}', UnlikeController::class)->name('question.unlike');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

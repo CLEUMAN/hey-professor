@@ -18,8 +18,21 @@ it('should be able to create a new question bigger than 255 characters', functio
     $request->assertRedirect(route('dashboard'));
     \Pest\Laravel\assertDatabaseCount('questions', 1);
     \Pest\Laravel\assertDatabaseHas('questions', ['question' => str_repeat('*', 260).'?']);
+});
+
+it('should create as a draft all the time', function(){
+    $user = \App\Models\User::factory()->create();
+    \Pest\Laravel\actingAs($user);
+
+    $request = \Pest\Laravel\post(route('question.store'), [
+        'question' => str_repeat('*', 260).'?',
+
+    ]);
 
 
+    \Pest\Laravel\assertDatabaseHas('questions',
+        ['question' => str_repeat('*', 260).'?',
+        'draft' => true]);
 });
 
 it('should check if ends with question mark ?', function(){
@@ -56,5 +69,6 @@ it('should have at least 10 characters', function(){
     // ASSERT:: VERIFICAR
     $request->assertSessionHasErrors(['question' => __('validation.min.string', ['min' => 10, 'attribute' => 'question'])]);
     \Pest\Laravel\assertDatabaseCount('questions', 0);
+
 
 });

@@ -44,7 +44,7 @@ class QuestionController extends Controller
             ],
         ]);
 
-        Question::query()->create(
+        user()->questions()->create(
             array_merge($attributes, ['draft' => true])
         );
         return to_route('dashboard');

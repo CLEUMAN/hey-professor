@@ -16,7 +16,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('question.index', ['questions' => user()->questions]);
     }
 
     /**
@@ -47,7 +47,7 @@ class QuestionController extends Controller
         user()->questions()->create(
             array_merge($attributes, ['draft' => true])
         );
-        return to_route('dashboard');
+        return back();
     }
 
     /**

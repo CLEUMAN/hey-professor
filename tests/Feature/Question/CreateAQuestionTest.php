@@ -15,7 +15,7 @@ it('should be able to create a new question bigger than 255 characters', functio
 
 
     // ASSERT:: VERIFICAR
-    $request->assertRedirect(route('dashboard'));
+    $request->assertRedirect();
     \Pest\Laravel\assertDatabaseCount('questions', 1);
     \Pest\Laravel\assertDatabaseHas('questions', ['question' => str_repeat('*', 260).'?']);
 });

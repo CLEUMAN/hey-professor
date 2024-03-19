@@ -14,7 +14,7 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): RedirectResponse
     {
         return view('question.index', ['questions' => user()->questions]);
     }

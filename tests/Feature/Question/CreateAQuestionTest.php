@@ -72,3 +72,9 @@ it('should have at least 10 characters', function(){
 
 
 });
+
+    it('only authenticated users can create a new question', function (){
+        \Pest\Laravel\post(route('question.store'), [
+            'question' => str_repeat('*', 8). '?',
+        ])->assertRedirect(route('login'));
+    });
